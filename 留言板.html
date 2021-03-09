@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言板</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .box {
+            width: 600px;
+            margin: 0px auto;
+            position: relative;
+        }
+
+        textarea {
+            width: 578px;
+            height: 180px;
+            font-size: 15px;
+            padding: 10px;
+            margin-top: 20px;
+            border: 1px solid black;
+            border-radius: 5px;
+            outline: none;
+            resize: none;
+            /*固定*/
+        }
+
+        button {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            width: 120px;
+            height: 25px;
+            border: 1px solid #ccc;
+            border-color: #dedede;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        ul {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        ul li {
+            width: 600px;
+            height: 120px;
+            border-bottom: 1px dotted #ccc;
+        }
+
+        ul li:last-child {
+            border-bottom: 0px;
+        }
+
+        li img {
+            float: left;
+            width: 70px;
+            height: 70px;
+            border-radius: 100px;
+        }
+
+        li div {
+            float: right;
+            width: 520px;
+            height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <form action=""></form>
+        <textarea name="" placeholder="请输入你的留言内容"></textarea>
+        <button>提交</button>
+    </div>
+    <div class="box">
+        <ul>
+            <li>
+                <img src="./7.jpg" alt="">
+                <div>
+                    <h3 id="size"></h3>
+                    <p>阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+
+    //定义button选择器
+    var btn = document.querySelector("button");
+    var mis = document.querySelector('#size');
+    
+    //当鼠标点击button按钮
+    btn.onclick = function () {
+        var New = new Date()
+        //mistwo 是设置时间的新的变量
+        var mistwo = New.getFullYear() + '-' + (New.getMonth() + 1) + '-' + New.getDate() + ' ' + New.getHours() + ':' + "" + New.getMinutes() + ':' + New.getSeconds();
+        mis.innerHTML = mistwo;
+
+        //ul选择器
+        var ul = document.querySelector("ul");
+        //textarea 选择器 和值
+        var content = document.querySelector("textarea");
+        //定义li的元素 创建节点对象 li
+        var li = document.createElement("li");
+        // li里面的html 
+        li.innerHTML = `<img src="./7.jpg" alt="">
+             <div>
+              <h3>`+mistwo+`</h3>
+                 <p>`+ content.value + `</p>
+              </div > `;
+        //首先拿到第一个标签 利用数组
+        var firstli = ul.children[0];
+        //将新的留言li插入到第一个li 的前面
+        ul.insertBefore(li, firstli);
+        content.value="";
+        // h3.innerText=getDate();
+
+    }
+   
+
+
+</script>
+
+</html>
